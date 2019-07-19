@@ -18,12 +18,13 @@
 // routing lato back office al controller lato user(senza login)
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/posts/{slug}', 'PostController@show')->name('posts.show');
+Route::get('/categories/{slug}', 'PostController@PostInCategory')->name('posts.category');
 
 Auth::routes();
 
 // routing lato utente loggato al controller lato admin anche se HomeController@index sembra uguale
 // gruppo di metodi in comune a tutte le rotte: tutte iniziano con admin. prefix fa prefisso al URL
-Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin')->group(function(){
+Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
   Route::get('/', 'HomeController@index')->name('home');
-  Route::resource('/posts', 'PostController');
+  Route::resource('posts', 'PostController');
 });

@@ -6,5 +6,10 @@
     <p>{{ $post->content}}</p>
     <em>{{ $post->author}}</em>
     <span>{{ $post->created_at}}</span>
+    @if(!(empty($post->Category)))
+      <p>Categoria:
+        <a href="{{ route('posts.category', $post->category->slug)}}">{{$post->category->name}}</a>
+      </p>
+    @endif
   </div>
 @endsection

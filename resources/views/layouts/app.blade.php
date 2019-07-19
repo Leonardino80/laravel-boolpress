@@ -34,8 +34,17 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                       <li class="nav-item">
-                        <a href="{{ route('home') }}"></a>
+                        <a class="nav-link" href="{{ route('home') }}">Home</a>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.home') }}">Admin</a>
+                      </li>
+                      @auth
+                        {{-- link che c'è solo quando si effettua il login --}}
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{ route('admin.posts.index') }}">Gestione post</a>
+                        </li>
+                      @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -45,7 +54,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            @if (Route::has('register'))
+                            {{-- impedisco la registrazione --}}
+                          @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
