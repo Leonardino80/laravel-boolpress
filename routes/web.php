@@ -11,10 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// routing lato back office
+Route::get('/', function(){
+  return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// routing lato utente loggato
+// gruppo di metodi in comune a tutte le rotte: tutte iniziano con admin. prefix fa prefisso al URL
+Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin')->group(function(){
+  Route::get('/', 'HomeController@index')->name('home');
+  Route::resource('/posts', 'PostController');
+});
