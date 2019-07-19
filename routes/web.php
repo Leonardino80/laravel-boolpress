@@ -15,8 +15,9 @@
 //     return view('welcome');
 // });
 
-// routing lato back office al controller lato user
-Route::get('/', 'HomeController@index');
+// routing lato back office al controller lato user(senza login)
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/posts/{slug}', 'PostController@show')->name('posts.show');
 
 Auth::routes();
 
