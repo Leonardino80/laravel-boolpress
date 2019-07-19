@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-// richiamo la classe faker per usarlo
+// richiamo faker dentro la classe factory per usarlo
 use Faker\factory as Faker;
 // richiamo la classe post per il "new Post();"
 use App\Post;

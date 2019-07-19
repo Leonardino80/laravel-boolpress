@@ -27,6 +27,7 @@ class HomeController extends Controller
     //  */
     public function index()
     {
+      // view home dentro la cartella admin
         return view('admin.home');
     }
 }
