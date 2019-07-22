@@ -15,6 +15,13 @@
             (category n.a.)
           @endif
         </em>
+        @if (($post->tags)->isNotEmpty())
+          TAG:
+          @foreach ($post->tags as $tag)
+            {{$tag->name}}@if(!$loop->last) / @endif
+          @endforeach
+
+        @endif
       </li>
     @empty
       <em>Non ci sono post</em>
