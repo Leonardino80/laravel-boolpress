@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\category;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -25,7 +26,20 @@ class PostController extends Controller
 
   public function store(Request $request)
   {
-      //
+    $validazione = $request->validate([
+      'title' => 'required|unique:posts|max:255',
+      'content' => 'required',
+      'author' => 'required',
+      'category_id' => 'required'
+    ]);
+
+    $dati = $request->all();
+    $dati['slug'] = Str::slug($dati['title']);
+    $newPost = new Post();
+    $newPost->fill($dati);
+    $newPost->save();
+
+    return redirect()->route('admin.posts.index');
   }
 
   public function show($id)
